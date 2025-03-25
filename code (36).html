@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ミライクリエイト | あなたの"ミライ"を、ここから創ろう</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <!-- Tailwind CSSを本番環境で使用する場合は、PostCSSプラグインとしてインストールするか、Tailwind CLIを使用してください -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+      <!-- 開発環境ではTailwind Play CDNを使用できますが、本番環境では推奨されません -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #a5dff9;
+            --pink: #ef5285;
+            --teal: #60c5ba;
+            --yellow: #feee7d;
+            --white: #ffffff;
+            --dark: #333333;
+            --light-gray: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ヘッダーセクション */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--pink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo svg {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center; /* ナビゲーションリンクを中央揃え */
+        }
+
+        nav li {
+            margin-left: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            display: block; /* ブロックレベル要素にして、高さを確保 */
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--pink);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+        nav .register-btn-container{
+          margin-left: 1.5rem;
+        }
+
+        .register-btn {
+            background-color: var(--pink);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(239, 82, 133, 0.3);
+            display: block;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(239, 82, 133, 0.4);
+        }
+
+        .register-btn2 {
+            background-color: var(--pink);
+            color: rgb(253, 253, 253);
+            margin:5% 0% 0% 0% ;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            width: 30%;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .register-btn2:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 1px 10px rgba(194, 194, 194, 0.4);
+        }
+
+
+
+        /* ヒーローセクション */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(165, 223, 249, 0.2), rgba(96, 197, 186, 0.2));
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .circles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .c1 {
+            width: 300px;
+            height: 300px;
+            background-color: var(--blue);
+            top: -50px;
+            left: -50px;
+            animation-delay: 0s;
+        }
+
+        .c2 {
+            width: 200px;
+            height: 200px;
+            background-color: var(--pink);
+            bottom: 50px;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .c3 {
+            width: 150px;
+            height: 150px;
+            background-color: var(--teal);
+            top: 20%;
+            right: 20%;
+            animation-delay: 4s;
+        }
+
+        .c4 {
+            width: 100px;
+            height: 100px;
+            background-color: var(--yellow);
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .hero-title span {
+            color: var(--pink);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: var(--yellow);
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--pink);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(239, 82, 133, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(239, 82, 133, 0.4);
+        }
+
+        .hero-img {
+            position: absolute;
+            right: -100px;
+            bottom: -50px;
+            width: 500px;
+            height: 500px;
+            background-color: var(--teal);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        /* アバウトセクション */
+        .about {
+            padding: 100px 0;
+            background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            padding-bottom: 6.25%; /* 16:9のアスペクト比 */
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--teal);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-img {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-img-main {
+            width: 100%;
+            height: 0; /* 高さを0にして、padding-bottomで高さを制御 */
+            padding-bottom: 36.25%; /* 16:9のアスペクト比 */
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(165, 223, 249, 0.4);
+        }
+        .about-img-main img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3
+0%;
+            object-fit: cover;
+        }
+
+        .about-shape {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: var(--yellow);
+            bottom: -20px;
+            right: -20px;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark);
+            opacity: 0.9;
+        }
+
+       /* 活動内容 */
+        .activities {
+            padding: 100px 0;
+            background-color: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activities-shape {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: var(--blue);
+            opacity: 0.1;
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .activities-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .activity-card {
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-img {
+            height: 200px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+          object-fit: cover;
+        }
+
+
+        .activity-content {
+            padding: 2rem;
+        }
+
+        .activity-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .activity-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+
+
+        /* メッセージセクション */
+        .message {
+            padding: 100px 0;
+            background-color: var(--pink);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .message-shape {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .message-shape.s1 {
+            width: 300px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            top: -100px;
+            right: -100px;
+        }
+
+        .message-shape.s2 {
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.1);
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .message h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .message p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .message-btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--pink);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .message-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* フッター */
+        footer {
+            background-color: var(--dark);
+            padding: 50px 0 20px;
+            color: white;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--pink);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--pink);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 3rem;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .hero-img {
+                right: -200px;
+            }
+             /* レスポンシブ: aboutセクション */
+            .about-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .message h2 {
+                font-size: 2rem;
+            }
+
+            .message p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                height: auto;
+                padding: 120px 0 80px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+
+            .message h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* アニメーション */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* スクロールボタン */
+        .scroll-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 3px 10px rgba(239, 82, 133, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        .scroll-btn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(239, 82, 133, 0.4);
+        }
+
+        .menu-btn {
+            display: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            z-index: 101;
+            position: relative;
+        }
+
+        .menu-btn span {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--dark);
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn span::before,
+        .menu-btn span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--dark);
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn span::before {
+            top: -10px;
+        }
+
+        .menu-btn span::after {
+            top: 10px;
+        }
+
+        .menu-btn.open span {
+            background-color: transparent;
+        }
+
+        .menu-btn.open span::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-btn.open span::after {
+            top: 0;
+            transform: rotate(-45deg);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.9);
+                z-index: 100;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            nav ul.open {
+                display: flex;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 2rem;
+            }
+
+            nav ul li a {
+                color: white;
+                font-size: 1.5rem;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+        }
+
+        /* 各セクション間のマージン */
+        section {
+            margin-bottom: 100px; /* セクション間の縦幅 */
+        }
+
+        /* NEWSセクション */
+        .news-section .news-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .news-section img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          margin-bottom: 1rem;
+        }
+
+        /* オーディション情報セクション */
+          .audition-section .audition-item {
+            display: flex;
+            flex-direction: column;
+          }
+
+        .audition-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+
+        /* 所属タレントセクション */
+        .talents-section .talent-item {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .talents-section img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+          /* aboutセクション シェイプアニメーション */
+        .shapes-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* .about-img よりも背面に配置 */
+        }
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: floatShape 15s infinite ease-in-out;
+        }
+
+        .s1 {
+            width: 150px;
+            height: 150px;
+            background-color: var(--pink);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+
+        .s2 {
+            width: 100px;
+            height: 100px;
+            background-color: var(--blue);
+            bottom: 10%;
+            right: 15%;
+            animation-delay: 2s;
+            border-radius: 71% 29% 46% 54% / 65% 43% 57% 35%;
+        }
+
+        .s3 {
+            width: 120px;
+            height: 120px;
+            background-color: var(--teal);
+            top: 20%;
+            right: 30%;
+            animation-delay: 4s;
+             /* バツ印 */
+            clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+
+        }
+
+        @keyframes floatShape {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); }
+            25% { transform: translateY(-15px) translateX(10px) rotate(5deg); }
+            50% { transform: translateY(-5px) translateX(-15px) rotate(-5deg); }
+            75% { transform: translateY(10px) translateX(5px) rotate(3deg); }
+            100% { transform: translateY(0) translateX(0) rotate(0deg); }
+        }
+
+        /*  Other Section CSS */
+        .other-sections {
+            padding: 50px 0;
+            background-color: var(--light-gray); /* 背景色をlight-grayに設定 */
+        }
+
+        .other-sections .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .other-sections .section-title {
+            text-align: center; /* タイトルを中央寄せ */
+            margin-bottom: 2rem;
+        }
+
+        .other-sections .section-title h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .other-sections .section-title .subtitle {
+            font-size: 1.2rem;
+            color: var(--dark);
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .other-sections .free-register {
+            background-color: #fff; /* 背景色を白に設定 */
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 全体を中央寄せ */
+            margin-bottom: 2rem; /* 下部の余白を追加 */
+        }
+
+        .other-sections .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .other-sections .feature-list li {
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            text-align: center; /* リスト項目を中央寄せ */
+        }
+
+        .other-sections .entry-banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 画像とボタンを中央寄せ */
+        }
+
+        .other-sections .entry-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .other-sections .entry-button {
+            background-color: var(--pink);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .other-sections .contact-form {
+            background-color: #fff; /* 背景色を白に設定 */
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        other-sections .contact-form form {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* フォーム要素を中央寄せ */
+        }
+
+        .other-sections .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box; /* padding, border を含めたwidth */
+        }
+
+        .other-sections .form-input:focus {
+            outline: none;
+            border-color: var(--pink);
+        }
+
+        .other-sections .form-input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+
+        .other-sections .form-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .other-sections .submit-button {
+            background-color: var(--pink);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .other-sections .submit-button:hover {
+            background-color: darken(var(--pink), 10%);
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .other-sections .entry-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+        @media (max-width: 576px) {
+             .other-sections .section-title h2 {
+                font-size: 1.5rem;
+            }
+
+            .other-sections .section-title .subtitle {
+                font-size: 1rem;
+            }
+             .other-sections .contact-form {
+                padding: 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40">
+                    <circle cx="20" cy="20" r="18" fill="#ef5285" />
+                    <circle cx="20" cy="20" r="12" fill="#a5dff9" />
+                    <circle cx="20" cy="20" r="6" fill="#60c5ba" />
+                </svg>
+                ミライクリエイト
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#activities">ACTIVITIES</a></li>
+                    <li><a href="#talents">TALENTS</a></li>
+                    <li><a href="#news">NEWS</a></li>
+                    <li>       
+             　　　   <a href="#" class="register-btn">エントリー</a>
+             　　 </li>
+                </ul>
+     
+            </nav>
+            <div class="menu-btn">
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="circles">
+                <div class="circle c1"></div>
+                <div class="circle c2"></div>
+                <div class="circle c3"></div>
+                <div class="circle c4"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    あなたの<span>"ミライ"</span>を、<br>
+                    ここから創ろう。
+                </h1>
+                <p class="hero-subtitle">
+                    登録から始まる、無限の可能性。ミライクリエイト
+                </p>
+                <a href="#" class="hero-btn">まずは無料エントリー！</a>
+            </div>
+        </div>
+        <div class="hero-img"></div>
+    </section>
+
+
+        <div class="container">
+            <div class="section-title">
+                <h2>ABOUT</h2>
+            </div>
+            <div class="about-content">
+            
+                    <div class="about-shape"></div>
+                </div>
+      
+                <div class="about-text">
+                    <p class="fade-in">
+                        ミライクリエイト委員会は、次世代のエンターテイメント業界を担う才能を発掘し、育成するためのプロジェクトです。私たちは、情熱と夢を持つ人々が集い、互いに刺激し合いながら成長できる場を提供します。
+                    </p>
+                    <p class="fade-in">
+                        登録は完全無料。あなたのペースで活動を始められます。経験豊富なプロデューサーやクリエイターによるサポート、実践的なワークショップやセミナー、そして同じ志を持つ仲間たちとの出会いが、あなたを待っています。
+                    </p>
+                    <p class="fade-in">
+                      ミライクリエイト委員会は、年齢、性別、経験を問わず、誰もが自分の可能性を最大限に引き出せる場所です。あなたの「ミライ」を、私たちと一緒に創造しましょう！
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section id="activities" class="activities">
+    <div class="container">
+        <div class="section-title">
+            <h2>活動内容</h2>
+        </div>
+        <div class="activities-cards">
+            <div class="activity-card fade-in">
+                <img src="image_fx_ (35).jpg" alt="登録制度" class="activity-img">
+                <div class="activity-content">
+                    <h3>登録制度について</h3>
+                    <p>                    ミライクリエイト委員会は、登録制を採用しています。登録は無料、あなたのペースで活動を始められます。ミライクリエイトメンバーになれば、限定の仕事のオファーや必要に応じたレッスンなど芸能活動の様々なサポートを無料で受けることが出来ます。
+                    </p>
+                </div>
+            </div>
+            <div class="activity-card fade-in">
+                <img src="image_fx_ (27).jpg" alt="オーディション" class="activity-img">
+                <div class="activity-content">
+                    <h3>オーディションについて</h3>
+                    <p>
+                        ミライクリエイトへのエントリーでは書類審査とWEB面談を行い、ドラマ、TV番組、モデルなどのお仕事適正審査を行います。また、お仕事をご依頼する際にはお仕事内容によってWEB面談もしくは直接面談によるオーディションが行われます。
+                    </p>
+                </div>
+            </div>
+             <div class="activity-card fade-in">
+                <img src="image_fx_ (29).jpg" alt="ワークショップ" class="activity-img">
+                <div class="activity-content">
+                    <h3>仕事の紹介</h3>
+                    <p>
+                      皆さんのプロフィールや特技の情報を元に我々が番組やドラマ、YouTubeやSNSの企業案件のご紹介をいたします。仕事によっては事前にプロの講師による実践的な指導を受けることができます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <section id="news" class="news-section">
+      <div class="container">
+          <div class="section-title">
+              <h2>NEWS</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div class="news-item">
+                  <img src="haru.gif" alt="ニュース画像1">
+                  <span class="text-gray-500 block mt-2">2025.03.15</span>
+                  <p class="mt-1">2025年春季オーディション募集開始！</p>
+
+              </div>
+              <div class="news-item">
+                  <img src="image_fx_ (37).jpg" alt="ニュース画像2">
+                  <span class="text-gray-500 block mt-2">2025.03.01</span>
+                  <p class="mt-1">所属タレント田中さんがドラマ「未来への扉」に出演決定！</p>
+
+              </div>
+              <div class="news-item">
+                  <img src="image_fx_ (7).jpg" alt="ニュース画像3">
+                  <span class="text-gray-500 block mt-2">2025.02.20</span>
+                  <p class="mt-1">新規ワークショップ「表現力向上講座」開催！</p>
+
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section id="audition" class="audition-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>オーディション情報</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="audition-item">
+                <img src="haru.gif" alt="オーディション画像1">
+                <span class="text-gray-500 block mt-2">2024.04.01</span>
+                <p class="mt-1">春の特別オーディション開催！</p>
+                <a href="#" class="register-btn2">エントリー</a>
+            </div>
+            <div class="audition-item">
+                <img src="tu.gif" alt="オーディション画像2">
+                <span class="text-gray-500 block mt-2">2024.05.15</span>
+                <p class="mt-1">追加オーディション開催決定！</p>
+                <a href="#" class="register-btn2">エントリー</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="talents" class="talents-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>所属タレント</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div class="talent-item">
+                <img src="image_fx_ (36).jpg" alt="佐藤 美咲">
+                <h4 class="text-lg font-bold mt-2">佐藤 美咲</h4>
+                <p class="text-gray-500">女優 / モデル</p>
+                <p class="mt-1">2022年オーディション合格。ドラマやCMで活躍中。特技は日本舞踊。</p>
+              </div>
+              <div class="talent-item">
+                  <img src="image_fx_ (39).jpg" alt="田中 健太">
+                  <h4 class="text-lg font-bold mt-2">田中 健太</h4>
+                  <p class="text-gray-500">俳優 / タレント</p>
+                  <p class="mt-1">2023年オーディション合格。バラエティ番組で活躍中。特技はモノマネ。</p>
+              </div>
+              <div class="talent-item">
+                  <img src="image_fx_ (42).jpg" alt="山田 優子">
+                  <h4 class="text-lg font-bold mt-2">山田 優子</h4>
+                  <p class="text-gray-500">歌手</p>
+                  <p class="mt-1">2024年オーディション合格。歌唱力を活かして活動中。特技は作詞作曲。</p>
+              </div>
+          </div>
+          
+      </div>
+  </section>
+
+
+
+
+      <section class="message">
+          <div class="message-shape s1"></div>
+          <div class="message-shape s2"></div>
+          <div class="container">
+              <h2>MESSAGE</h2>
+              <p>
+                  あなたの夢を、私たちと一緒に叶えましょう。ミライクリエイト委員会は、あなたの挑戦を全力でサポートします。
+                  もちろん登録もレッスンも一切費用不要。
+              </p>
+              <a href="#" class="message-btn">まずは無料エントリー</a>
+          </div>
+      </section>
+
+
+      <section class="other-sections">
+        <div class="container">
+    
+            <div class="section-title">
+                <h2>ミライクリエイトに無料でエントリー</h2>
+                <p class="subtitle">夢への第一歩を踏み出そう！</p>
+            </div>
+    
+            <div class="free-register">
+                <a class="feature-list">
+                  ミライクリエイトメンバー限定のイベント・番組出演などの優待参加や企業の広告モデルの最新オーディション情報が届く
+                </a>
+    
+                <!-- 画像とボタン -->
+                <div class="entry-banner">
+                    <img src="QR.png" alt="エントリーはこちら" class="entry-image">
+                    <a href="#" class="entry-button">エントリーはLINEから</a>
+                </div>
+                <!-- /画像とボタン -->
+    
+            </div>
+    
+            <div class="section-title">
+                <h2>お問い合わせ</h2>
+            </div>
+            <div class="contact-form">
+                <form class="mt-4">
+                    <input type="text" placeholder="お名前" class="form-input">
+                    <input type="email" placeholder="メールアドレス" class="form-input">
+                    <input type="text" placeholder="件名" class="form-input">
+                    <textarea placeholder="お問い合わせ内容" class="form-input"></textarea>
+                    <label class="form-checkbox">
+                        <input type="checkbox" class="mr-2">
+                        プライバシーポリシーに同意する
+                    </label>
+                    <button type="submit" class="submit-button">送信</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+      <footer>
+          <div class="footer-container">
+              <div class="footer-col">
+                  <h3 class="footer-logo">ミライクリエイト運営構成</h3>
+                  <p>ミライクリエイト運営構成</p>
+                  <p>マインドフリー株式会社</p>
+                  <p>ロイスター株式会社</p>
+              </div>
+              <div class="footer-col">
+                  <h3>サイトマップ</h3>
+                  <ul class="footer-links">
+                      <li><a href="#">HOME</a></li>
+                      <li><a href="#about">ABOUT</a></li>
+                      <li><a href="#activities">ACTIVITIES</a></li>
+                      <li><a href="#talents">TALENTS</a></li>
+                      <li><a href="#news">NEWS</a></li>
+                      <li><a href="#">CONTACT</a></li>
+                      <li><a href="#">無料登録</a></li>
+                  </ul>
+              </div>
+              <div class="footer-col">
+                  <h3>その他</h3>
+                  <ul class="footer-links">
+                      <li><a href="#">プライバシーポリシー</a></li>
+                      <li><a href="#">利用規約</a></li>
+                  </ul>
+              </div>
+               
+              <div class="footer-col">
+                  <h3>FOLLOW US</h3>
+                  <div class="social-links">
+                      <a href="#"><i class="fab fa-twitter"></i></a>
+                      <a href="#"><i class="fab fa-instagram"></i></a>
+                      <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  </div>
+              </div>
+
+          </div>
+          <div class="copyright">
+              © 2025 ミライクリエイト委員会. All rights reserved.
+          </div>
+      </footer>
+
+      <a href="#" class="scroll-btn">
+          <i class="fas fa-chevron-up"></i>
+      </a>
+
+      <script>
+          const header = document.querySelector('header');
+          const scrollBtn = document.querySelector('.scroll-btn');
+          const sections = document.querySelectorAll('section');
+          const navLinks = document.querySelectorAll('nav a');
+          const menuBtn = document.querySelector('.menu-btn');
+          const navMenu = document.querySelector('nav ul');
+
+          function updateHeader() {
+              if (window.scrollY > 100) {
+                  header.classList.add('scrolled');
+              } else {
+                  header.classList.remove('scrolled');
+              }
+          }
+
+          function showScrollBtn() {
+              if (window.scrollY > 500) {
+                  scrollBtn.classList.add('show');
+              } else {
+                  scrollBtn.classList.remove('show');
+              }
+          }
+
+          function updateActiveNavLink() {
+              let currentSectionId = '';
+              sections.forEach(section => {
+                  const sectionTop = section.offsetTop;
+                  const sectionHeight = section.clientHeight;
+                  if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+                      currentSectionId = section.getAttribute('id');
+                  }
+              });
+
+              navLinks.forEach(link => {
+                  link.classList.remove('active');
+                  if (link.getAttribute('href').slice(1) === currentSectionId) {
+                      link.classList.add('active');
+                  }
+              });
+          }
+
+          function revealSections() {
+              sections.forEach(section => {
+                  const sectionTop = section.offsetTop;
+                  const windowHeight = window.innerHeight;
+                  if (window.scrollY > sectionTop - windowHeight + 200) {
+                      section.classList.add('visible');
+                      section.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                          el.classList.add('visible');
+                      });
+                  }
+              });
+          }
+
+          window.addEventListener('scroll', () => {
+              updateHeader();
+              showScrollBtn();
+              updateActiveNavLink();
+              revealSections();
+          });
+
+          scrollBtn.addEventListener('click', () => {
+              window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth'
+              });
+          });
+
+          document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+              anchor.addEventListener('click', function (e) {
+                  e.preventDefault();
+
+                  document.querySelector(this.getAttribute('href')).scrollIntoView({
+                      behavior: 'smooth'
+                  });
+              });
+          });
+
+          menuBtn.addEventListener('click', () => {
+              menuBtn.classList.toggle('open');
+              navMenu.classList.toggle('open');
+          });
+
+          document.addEventListener('click', (e) => {
+              if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && e.target !== menuBtn && !menuBtn.contains(e.target)) {
+                  menuBtn.classList.remove('open');
+                  navMenu.classList.remove('open');
+              }
+          });
+      </script>
+  </body>
+  </html>
